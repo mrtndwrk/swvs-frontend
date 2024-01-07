@@ -1,0 +1,67 @@
+<h3>{{ sensors.length > 0 ? 'Choose your sensor' : 'No Sensors could be found' }}</h3>
+<ul *ngIf="sensors.length > 0">
+  <li *ngFor="let sensor of sensors">
+    <a [routerLink]="['/sensor', sensor.id]">{{ sensor.name }} (Location: {{ sensor.location }})</a>
+  </li>
+</ul>
+
+<div class="form-buttons">
+  <button (click)="toggleForm()">
+    {{ showForm ? 'Hide Creation Form' : 'Show Creation Form' }}
+  </button>
+
+  <!-- Measurement entry link with styling -->
+  <button (click)="toggleMeasurementForm()">
+    {{ showMeasurementForm ? 'Hide Measurement Form' : 'Show Measurement Form' }}
+  </button>
+</div>
+
+<!-- Sensor creation form -->
+<form *ngIf="showForm" [formGroup]="sensorForm" (ngSubmit)="createSensor()">
+  <h4>Create new Sensor</h4>
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" />
+  </div>
+
+  <div>
+    <label for="isActive">Active:</label>
+    <input type="checkbox" id="isActive" formControlName="isActive" />
+  </div>
+
+  <div>
+    <label for="location">Location:</label>
+    <input type="text" id="location" formControlName="location" />
+  </div>
+
+  <div>
+    <label for="sensorType">Sensor Type</label>
+    <select id="sensorType" formControlName="sensorType">
+      <option *ngFor="let type of sensorTypeOptions" [value]="type">{{ type }}</option>
+    </select>
+  </div>
+  
+  <button type="submit" [disabled]="sensorForm.invalid">Create new sensor</button>
+</form>
+
+<!-- Measurement entry form -->
+<form *ngIf="showMeasurementForm" [formGroup]="measurementForm" (ngSubmit)="submitMeasurement()">
+
+  <h4>Submit Measurement</h4><span class="update-info">Please refresh page after submitting a new measurement</span>
+
+  <label for="sensorID">Select Sensor:</label>
+  <select formControlName="sensorID">
+    <option *ngFor="let sensor of sensors" [value]="sensor.id">{{ sensor.name }} ({{ sensor.location}}) (Sensor ID: {{ sensor.id }}) </option>
+  </select>
+
+  <label for="timestamp">Timestamp:</label>
+  <input type="datetime-local" formControlName="timestamp" />
+
+  <label for="temperature">Temperature:</label>
+  <input type="number" formControlName="temperature" />
+
+  <label for="humidity">Humidity:</label>
+  <input type="number" formControlName="humidity" />
+
+  <button type="submit" [disabled]="measurementForm.invalid">Submit Measurement</button>
+</form>

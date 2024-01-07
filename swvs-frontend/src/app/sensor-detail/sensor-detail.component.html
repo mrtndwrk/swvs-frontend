@@ -1,0 +1,51 @@
+<h2>Sensor Details</h2>
+<div *ngIf="sensor">
+  <div *ngIf="!editing">
+    <p><strong>Sensor ID:</strong> {{ sensor.id }}</p>
+    <p><strong>Name:</strong> {{ sensor.name }}</p>
+    <p><strong>Location:</strong> {{ sensor.location }}</p>
+    <p><strong>Status:</strong> {{ updateForm.get('active')?.value ? 'Active' : 'Inactive' }}</p>
+    <p><strong>Sensor Type:</strong> {{ sensor.sensorType }}</p>
+  </div>
+
+  <div *ngIf="editing">
+    
+<!-- Form for editing sensor details -->
+<form [formGroup]="updateForm" (ngSubmit)="saveChanges()">
+  <h4>Change Sensor Details for <span style="color: green;">{{ sensor.name }}</span></h4> 
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" />
+  </div>
+
+  <div>
+    <label for="location">Location:</label>
+    <input type="text" id="location" formControlName="location" />
+  </div>
+
+  <div>
+    <label for="active">Active:</label>
+    <input type="checkbox" id="active" formControlName="active" />
+  </div>
+        
+
+  <div>
+    <label for="sensorType">Sensor Type:</label>
+    <select id="sensorType" formControlName="sensorType">
+      <option *ngFor="let type of sensorTypeOptions" [value]="type">{{ type }}</option>
+    </select>
+  </div>
+
+  <button type="submit">Save Changes</button>
+</form>
+
+  </div>
+
+  <div class="detailsbuttons">
+    <button *ngIf="!editing" (click)="startEditing()">Update Sensor</button>
+    <button (click)="deleteSensor()">Delete Sensor</button>
+  </div>
+
+  <app-measurement-list *ngIf="sensor && sensor.id !== undefined" [sensorId]="sensor.id.toString()"></app-measurement-list>
+
+</div>

@@ -1,0 +1,108 @@
+/* Add this style to center the form buttons horizontally */
+.form-buttons {
+display: flex;
+justify-content: center;
+}
+
+h3{
+  text-align: center;
+}
+
+/* Other existing styles remain unchanged */
+form {
+  margin: 20px 0;
+  border: 1px solid gray; /* Added border to the form */
+  padding: 15px; /* Added padding for better spacing */
+  border-radius: 5px; /* Added border-radius for a rounded appearance */
+}
+
+
+div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+select,
+input[type="number"],
+input[type="datetime-local"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  margin-top: 5px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 190px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Styling of the sensor list */
+
+ul {
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(168, 168, 168, 0.5);
+  border-radius: 5px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+li:hover{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+a:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+
+.update-info {
+  color: red;
+}
+

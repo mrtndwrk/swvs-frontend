@@ -1,0 +1,36 @@
+<div class="center-container">
+  <!-- Hide both graph and table if no measurements are found -->
+  <div class="graph" style="display: block;" *ngIf="measurements.length > 0">
+    <canvas baseChart
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            [legend]="true"
+            type="line">
+    </canvas>
+  </div>
+
+  <table class="custom-table" *ngIf="measurements.length > 0">
+    <thead>
+      <tr>
+        <th>Measurement ID</th>
+        <th>Timestamp</th>
+        <th>Temperature (°C)</th>
+        <th>Humidity (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let measurement of measurements">
+        <td>{{ measurement.id }}</td>
+        <td>{{ measurement.timestamp | date: 'dd.MM.yyyy HH:mm:ss' }}</td>
+        <td>{{ measurement.temperature }}°C</td>
+        <td>{{ measurement.humidity }}%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Show a message if no measurements are found -->
+  <div class="nomeasurements" *ngIf="measurements.length === 0">
+    No measurements found
+  </div>
+</div>
